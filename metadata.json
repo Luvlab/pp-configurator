@@ -1,0 +1,5 @@
+{
+  "name": "Peter Design Configurator",
+  "description": "A white-label 3D product configurator platform allowing users to design complex physical objects like modular furniture or jewelry. Features AI-assisted custom part requests and a fully brandable admin backoffice.",
+  "requestFramePermissions": []
+}
