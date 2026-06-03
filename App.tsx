@@ -6,7 +6,12 @@ import { PROJECT_PHONEBOOTH, PROJECT_JEWELRY } from './constants';
 
 const _searchParams = new URLSearchParams(window.location.search);
 const _projectMode = _searchParams.get('mode');
-const DEFAULT_PROJECT = _projectMode === 'jewelry' ? PROJECT_JEWELRY : PROJECT_PHONEBOOTH;
+// VITE_MODE env var lets a build be permanently locked to a project type
+// (e.g. VITE_MODE=jewelry for the Peter Hoff Design standalone configurator).
+// Falls back to URL ?mode= param, then defaults to PHONEBOOTH.
+const _envMode = import.meta.env.VITE_MODE as string | undefined;
+const DEFAULT_PROJECT =
+  (_envMode === 'jewelry' || _projectMode === 'jewelry') ? PROJECT_JEWELRY : PROJECT_PHONEBOOTH;
 import { analyzeCustomRequest } from './services/geminiService';
 
 type ViewMode = 'editor' | 'dashboard' | 'showcase' | 'auth';
